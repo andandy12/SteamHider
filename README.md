@@ -1,5 +1,5 @@
 # Profile Hider
-Profile Hider is a node.js script based off the [node-steam-user](https://github.com/DoctorMcKay/node-steam-user) framework. It was created to easily hide and protect a persons profile from being watched through changing profile picture, vanity url, and profile picture.
+Profile Hider is a node.js script based off the [node-steam-user](https://github.com/DoctorMcKay/node-steam-user) framework. It was created to easily hide and protect a persons profile from being watched through changing profile picture, vanity url, and profile name.
 
 ## Installation
 You must have [node.js](https://nodejs.org/en/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed to install and run the script.
