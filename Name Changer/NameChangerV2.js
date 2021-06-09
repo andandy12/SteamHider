@@ -7,11 +7,11 @@ const community = new SteamCommunity();
 const ReadLine = require('readline');
 
 const addField = (fieldsToAdd, field, fieldValue) => {
-  if(fieldValue !== undefined && fieldValue !== null) {
-    fieldsToAdd[field] = fieldValue;
-  }
-  return fieldsToAdd;
-}
+	if(fieldValue !== undefined && fieldValue !== null) {
+		fieldsToAdd[field] = fieldValue;
+	}
+	return fieldsToAdd;
+};
 
 function askQuestion(query) {
     const rl = ReadLine.createInterface({
@@ -21,7 +21,7 @@ function askQuestion(query) {
     return new Promise(resolve => rl.question(query, ans => {
         rl.close();
         resolve(ans);
-    }))
+    }));
 }
 
 client.on('steamGuard', async function(domain, callback) {
@@ -52,7 +52,8 @@ client.on('webSession', async function(sessionID, cookies) {
 		inventoryGifts: true,
 		gameDetails: "2",
 		playtime: true,
-		friendsList: "2"}
+		friendsList: "2"
+	};
 	community.profileSettings(settings);
 	var maxTimePause = 35000,minTimePause = 20000;
 	await hidenames(maxTimePause,minTimePause,localSteam64);
@@ -63,10 +64,10 @@ function sleep(ms) {
 	  setTimeout(resolve, ms);
 	});
 }
-
+var filedata;
 async function hidenames(maxTimePause,minTimePause, localSteam64){
 	if(fs.existsSync('RandomNames.txt')){
-		var filedata = fs.readFileSync('RandomNames.txt','UTF-8');
+		filedata = fs.readFileSync('RandomNames.txt','UTF-8');
 		filedata = filedata.split(/\r?\n/);
 	}else{
 		fs.writeFileSync('RandomNames.txt',"You need to populate the RandomNames.txt file with names on seperate lines.");
@@ -77,7 +78,6 @@ async function hidenames(maxTimePause,minTimePause, localSteam64){
 	}
 
 	var newVanityURL,avatarlink,changeavatar;
-	var maxTimePause = 35000,minTimePause = 20000;
 	while(true){
 		newVanityURL = 7+localSteam64.slice(0, -11).toString()+Math.floor((Math.random() * 7999999999) + 1000000000);
 		let settings = {
@@ -88,12 +88,12 @@ async function hidenames(maxTimePause,minTimePause, localSteam64){
 			state:"",
 			city:"",
 			customURL: newVanityURL,
-		}
+		};
 		console.log("Setting vanityURL to: \x1b[31m%s\x1b[0m",settings.customURL);
 		console.log("Setting name to: \x1b[31m",settings.name,"\x1b[0m");
 		community.editProfile(settings);
 		community.clearPersonaNameHistory();
-    console.log("\x1b[32mCleared previous Names\x1b[0m");
+    	console.log("\x1b[32mCleared previous Names\x1b[0m");
 		if(changeavatar){
 			avatarlink = "https://sguru.org/wp-content/uploads/2017/06/steam-avatar-profile-picture-0"+Math.floor((Math.random() * 334) + 100)+".jpg";
 			console.log("Setting avatar: \x1b[31m",avatarlink,"\x1b[0m");
